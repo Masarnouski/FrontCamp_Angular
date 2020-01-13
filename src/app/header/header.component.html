@@ -1,1 +1,39 @@
-<p>header works!</p>
+<div class="container">
+    <div class="line">
+        <div class="logo">Angular</div>
+        <span class="login-form">
+            <label class="login-form__label">
+                User login
+            </label>
+            <button class="login-form__button"> Login </button>
+        </span>
+    </div>
+
+    <div class="line line_color_grey">
+        <div class="line__source-name"> Source Name </div>
+    </div>
+    <div class="line">
+        <span class="line__dropdown-list">
+            <select>
+                <option> OWN </option>
+                <option> NEWS API </option>
+                <option> </option>
+            </select>
+        </span>
+        <span class="line__search-form">
+            <form (ngSubmit)="onSubmit($event)">
+                <input type="text" />
+                <button type="submit"> Submit </button>
+            </form>
+        </span>
+        <span class="line__checkbox">
+            <label>
+                <input type="checkbox" /> checkbox
+            </label>
+        </span>
+
+        <span class="line__button">
+            <button> Add article </button>
+        </span>
+    </div>
+</div>

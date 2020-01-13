@@ -1,0 +1,40 @@
+
+.container
+{
+    height: 100%;
+}
+.line{
+    display:flex;
+    border: 1px solid black;
+    height: 50%;
+    .logo{
+
+    }
+    .logo:before{
+        content:'';
+        background-image: url('../../assets/icon.png'); 
+    }
+   
+    &_color_grey{
+        background-color: lightgrey;
+    }
+    &__dropdown-list{
+        flex:1;
+    }
+    &__checkbox{
+        flex:1;
+    }
+
+    &__search-form
+    {
+        flex:1;
+        display: inline-block;
+    }
+    &__button{
+    }
+    &__source-name{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

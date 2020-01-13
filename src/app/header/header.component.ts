@@ -12,4 +12,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit($event:Event) { 
+    console.log($event);
+   
+  }
 }
