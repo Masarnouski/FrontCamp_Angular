@@ -2,6 +2,11 @@
 .container
 {
     height: 100%;
+    width: 100%;
+}
+
+.login-form{
+    float:right;
 }
 
 .header-line{
@@ -11,10 +16,6 @@
 
 .header-line * {
     display:inline-block;
-}
-
-.login-form{
-    float:right;
 }
 
 .logo:before{
@@ -27,33 +28,3 @@
     background-repeat: no-repeat;
 }
 
-.filter *{
-    display:inline-block;
-    margin: 1%
-}
-
-.filter{
-    text-align: center;
-    width:100%;
-    display:inline-block;
-    border: 1px solid black;
-    height: 50%;
-
-    &__search-form
-    {
-        display: inline;
-    }
-    &__search-form *
-    {
-        margin-right: 2px;
-        margin-left: 2px; 
-    }
-}
-.source-line{
-    border: 1px solid black;
-    text-align: center;
-    background-color: lightgrey;
-    &__text{
-        margin: 0 0 0 0;
-    }
-}

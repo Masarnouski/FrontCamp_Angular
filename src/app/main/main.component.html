@@ -1,1 +1,60 @@
-<app-header> </app-header> 
+<div class="main">
+    <div class="source-line">
+        <h1 class="source-line__text"> Source Name </h1>
+    </div>
+    <div class="filter">
+        <div class="filter__dropdown-list">
+            <form>
+                <select #source (change)="onChangeObj(source)">
+                    <option *ngFor="let source of sources" [value]="source.id">
+                         {{source.name}}
+                    </option>
+                </select>
+            </form>
+        </div>
+        <div class="filter__search-form">
+            <input type="text" />
+            <button type="submit"> Submit </button>
+        </div>
+        <div class="filter__checkbox">
+            <label>
+                <input type="checkbox" /> checkbox
+            </label>
+        </div>
+
+        <div class="filter__button">
+            <button> Add article </button>
+        </div>
+    </div>
+        <div class="source">
+            <div *ngIf="articles">
+                <div class="news" *ngFor="let article of articles">
+                    <div class="newsWrapper">
+                        <img [src]="article.urlToImage">
+                        <div class="text">
+                            <p>{{article.title}}</p>
+                            <p>{{article.description}}</p>
+                            <a [href]="article.url">Read more</a>
+                        </div>
+                        <div class="date">
+                            <p>{{article.publishedAt | date:'shortTime' }}</p>
+                        </div>
+                        <div class="control" *ngIf="article.createdByMe">
+                            <button mat-raised-button color="primary" class="button">Edit</button>
+                            <button mat-raised-button color="primary" class="button">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loadMore" *ngIf="isAdded; else disabledButton">
+                    <button mat-raised-button (click)="loadMore()">Load more</button>
+                </div>
+
+                <ng-template #disabledButton>
+                    <div class="loadMore">
+                        <button mat-stroked-button disabled>Load more</button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
