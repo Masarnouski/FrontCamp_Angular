@@ -10,6 +10,9 @@ import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule, MatSelectModule, MatButtonModule, MatInputModule, MatFormFieldModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailsComponent } from './details/details.component'
+import { NewsCardComponent } from './main/news-card/news-card.component'
+import { FilterComponent } from './main/filter/filter.component'
 
 
 @NgModule({
@@ -17,9 +20,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    MainComponent
-
-
+    MainComponent,
+    DetailsComponent,
+    NewsCardComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

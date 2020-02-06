@@ -9,14 +9,25 @@ import { ApiService } from '../api/api.service'
   styleUrls: ['./main.component.less']
 })
 export class MainComponent implements OnInit {
+  
   @Input() isAdded: boolean;
+  createdByMe: boolean;
+  sources: Source[];
   sourceId: string;
   articles: Article[];
-  sources: Source[];
+  originalArticles: Article[];
   title: string;
   articlePage: number;
+  filterInput: string;
+
+
+    // Const
+    myTitle: string;
+    defaulTitle: string;
 
   constructor(private apiService: ApiService) {
+    this.myTitle = 'AMASING NEWS';
+    this.defaulTitle = 'Please, choose source';
   }
 
   ngOnInit() {
@@ -59,5 +70,69 @@ export class MainComponent implements OnInit {
         }
       }
     );
+  }
+
+  setInitialArticles() {
+    this.apiService.getArticles(this.sourceId, 1).subscribe(
+      resp => {
+        if (resp.length > 0) {
+          this.originalArticles = resp;
+          this.articles = this.originalArticles;
+          this.articlePage = 1;
+          this.isAdded = true;
+          this.filterInput = '';
+          this.createdByMe = false;
+        } else {
+          alert('NEWS API IS BROKEN');
+        }
+      }
+    );
+
+    this.setSourceTitle();
+  }
+
+  receiveSourceId($event) {
+    this.sourceId = $event;
+
+    this.setInitialArticles();
+  }
+
+
+  receiveGlobalFilter($event) {
+    this.filterInput = $event;
+
+    this.globalFilter();
+  }
+
+  receiveCreatedByMeFilter($event) {
+    this.createdByMe = $event;
+
+    this.createdByMeFilter(this.createdByMe);
+  }
+
+  globalFilter() {
+    if (this.filterInput) {
+      this.articles = this.articles.filter(art => art.title.includes(this.filterInput));
+    } else {
+      this.articles = this.originalArticles;
+    }
+  }
+
+  createdByMeFilter(selectedOption) {
+    if (selectedOption) {
+      this.title = this.myTitle;
+      this.articles = this.articles ? this.articles.filter(art => art.createdByMe) : null;
+    } else {
+      this.setSourceTitle();
+      this.globalFilter();
+    }
+  }
+
+  setSourceTitle() {
+    if (this.sourceId) {
+      this.title = this.sources.find(s => s.id === this.sourceId).name;
+    } else {
+      this.title = this.defaulTitle;
+    }
   }
 }
