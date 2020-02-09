@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Source } from '../models/source'
 import { Article } from '../models/article'
 import { ApiService } from '../api/api.service'
+import { Observable } from 'rxjs';
+import {  map } from 'rxjs/operators'; 
+import { discardPeriodicTasks } from '@angular/core/testing';
 
 @Component({
   selector: 'app-main',
@@ -9,7 +12,7 @@ import { ApiService } from '../api/api.service'
   styleUrls: ['./main.component.less']
 })
 export class MainComponent implements OnInit {
-  
+
   @Input() isAdded: boolean;
   createdByMe: boolean;
   sources: Source[];
@@ -21,9 +24,9 @@ export class MainComponent implements OnInit {
   filterInput: string;
 
 
-    // Const
-    myTitle: string;
-    defaulTitle: string;
+  // Const
+  myTitle: string;
+  defaulTitle: string;
 
   constructor(private apiService: ApiService) {
     this.myTitle = 'AMASING NEWS';
@@ -35,7 +38,7 @@ export class MainComponent implements OnInit {
     this.apiService.getSources().subscribe(
       resp => {
         this.sources = resp;
-        console.log( this.sources)
+        console.log(this.sources)
       }
     );
   }
@@ -73,6 +76,7 @@ export class MainComponent implements OnInit {
   }
 
   setInitialArticles() {
+    
     this.apiService.getArticles(this.sourceId, 1).subscribe(
       resp => {
         if (resp.length > 0) {
@@ -85,9 +89,12 @@ export class MainComponent implements OnInit {
         } else {
           alert('NEWS API IS BROKEN');
         }
-      }
-    );
 
+        this.apiService.getLocalArticles().subscribe(resp =>{
+          this.articles.push(...resp);
+        })
+      });
+    console.log(this.articles);
     this.setSourceTitle();
   }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {formatDate } from '@angular/common'
+import { ApiService } from '../api/api.service';
+import { Article } from '../models/article';
 
 @Component({
   selector: 'app-edit-panel',
@@ -19,23 +21,27 @@ export class EditPanelComponent implements OnInit {
   public sourceUrlControl:FormControl = new FormControl('')
 
   public articleFormGroup: FormGroup = new FormGroup({
-    header:this.headerControl,
+    title:this.headerControl,
     description: this.descriptionControl,
     content: this.contentControl,
-    image:this.imageUrlControl,
-    date:this.dateControl,
+    urlToImage:this.imageUrlControl,
+    publishedAt:this.dateControl,
     author: this.authorControl,
     source: this.sourceUrlControl
   })
 
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
   }
 
   prepopulateForm(){
 
+  }
+  saveArticle(article: Article){
+    console.log(article);
+    this.apiService.postArticle(article).subscribe();
   }
 
 }

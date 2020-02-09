@@ -5,7 +5,10 @@ import { Response } from '../models/response'
 import { Article } from 'src/app/models/article';
 
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
+const localUrl = "http://localhost:3000/"
+const newsPrefix = "news/"
 const apiKey = '&apiKey=980e9d4359984b1bb923d5e1043ce9e2';
 const baseUrl = 'https://newsapi.org/';
 
@@ -34,5 +37,17 @@ export class ApiService {
 
   private createUrl(details: string) {
     return baseUrl + details + apiKey;
+  }
+
+  postArticle(article: Article) {
+    return this.http.post(localUrl + newsPrefix, article);
+  }
+
+  getLocalArticles() {
+    return this.http.get<Article[]>(localUrl + newsPrefix).pipe(
+      map(article => {
+        article.forEach(x => x.createdByMe = true)
+        return article;
+      }))
   }
 }
