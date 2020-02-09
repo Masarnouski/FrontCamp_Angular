@@ -6,13 +6,14 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MainComponent } from './main/main.component';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule, MatSelectModule, MatButtonModule, MatInputModule, MatFormFieldModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailsComponent } from './details/details.component'
 import { NewsCardComponent } from './main/news-card/news-card.component'
-import { FilterComponent } from './main/filter/filter.component'
+import { FilterComponent } from './main/filter/filter.component';
+import { EditPanelComponent } from './edit-panel/edit-panel.component'
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { FilterComponent } from './main/filter/filter.component'
     MainComponent,
     DetailsComponent,
     NewsCardComponent,
-    FilterComponent
+    FilterComponent,
+    EditPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { FilterComponent } from './main/filter/filter.component'
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

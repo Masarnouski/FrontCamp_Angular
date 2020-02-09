@@ -1,0 +1,42 @@
+<div class="container">
+    <form class="container__form" [formGroup]="articleFormGroup">
+        <ul>
+            <li>
+                <input class="field-split align-left" type="text" placeholder="Heading" [formControl]="headerControl">
+                <input class="field-split align-right" type="text" placeholder="Image" [formControl]="imageUrlControl">
+
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <input class="field-split align-left" type="text" placeholder="Short description"
+                    [formControl]="descriptionControl">
+                <input class="field-split align-left" type="text" placeholder="Date" [formControl]="dateControl">
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <input style="height: 110px;" class="field-split align-left" type="text" placeholder="Content"
+                    [formControl]="contentControl">
+                <input class="field-split align-right" type="text" placeholder="Author" [formControl]="authorControl">
+
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <input class="field-split align-right" type="text" placeholder="Source URL"
+                    [formControl]="sourceUrlControl">
+
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div class="button-group">
+                    <button [disabled]="!articleFormGroup.valid"> Save </button>
+                    <button> Cancel </button>
+                </div>
+            </li>
+        </ul>
+    </form>
+
+</div>
