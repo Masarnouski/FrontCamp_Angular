@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/models/article';
+import { Router, NavigationExtras } from '@angular/router';
+import { SessionService } from 'src/app/services/sessionService';
 
 @Component({
   selector: 'app-news-card',
@@ -10,9 +12,21 @@ export class NewsCardComponent implements OnInit {
 
   @Input() article: Article;
 
-  constructor() { }
+  constructor(private router:Router,
+    private sessionService:SessionService) { }
 
   ngOnInit() {
+  }
+
+  navigateToEditPage(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          "Article": JSON.stringify(this.article)
+      }
+    };
+   
+
+    this.router.navigate(["/edit"],  navigationExtras);
   }
 
 }

@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {formatDate } from '@angular/common'
 import { ApiService } from '../api/api.service';
 import { Article } from '../models/article';
+import { SessionService } from '../services/sessionService';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-edit-panel',
@@ -27,13 +29,23 @@ export class EditPanelComponent implements OnInit {
     urlToImage:this.imageUrlControl,
     publishedAt:this.dateControl,
     author: this.authorControl,
-    source: this.sourceUrlControl
+    url: this.sourceUrlControl
   })
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private route:ActivatedRoute
+    ) { }
+
+    article:Article;
 
   ngOnInit() {
+   
+    this.route.queryParams.subscribe(params => {
+      console.log(params["Article"]);
+      this.article = JSON.parse(params["Article"]);
+    });
+    (<FormGroup>this.articleFormGroup)
+    .setValue(this.article, {onlySelf: true});
   }
 
   prepopulateForm(){
