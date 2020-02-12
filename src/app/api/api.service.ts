@@ -38,16 +38,4 @@ export class ApiService {
   private createUrl(details: string) {
     return baseUrl + details + apiKey;
   }
-
-  postArticle(article: Article) {
-    return this.http.post(localUrl + newsPrefix, article);
-  }
-
-  getLocalArticles() {
-    return this.http.get<Article[]>(localUrl + newsPrefix).pipe(
-      map(article => {
-        article.forEach(x => x.createdByMe = true)
-        return article;
-      }))
-  }
 }

@@ -3,8 +3,9 @@ import { Source } from '../models/source'
 import { Article } from '../models/article'
 import { ApiService } from '../api/api.service'
 import { Observable } from 'rxjs';
-import {  map } from 'rxjs/operators'; 
+import { map } from 'rxjs/operators';
 import { discardPeriodicTasks } from '@angular/core/testing';
+import { NodeService } from '../api/node-service.service';
 
 @Component({
   selector: 'app-main',
@@ -28,7 +29,8 @@ export class MainComponent implements OnInit {
   myTitle: string;
   defaulTitle: string;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService,
+    private nodeService: NodeService) {
     this.myTitle = 'AMASING NEWS';
     this.defaulTitle = 'Please, choose source';
   }
@@ -76,7 +78,7 @@ export class MainComponent implements OnInit {
   }
 
   setInitialArticles() {
-    
+
     this.apiService.getArticles(this.sourceId, 1).subscribe(
       resp => {
         if (resp.length > 0) {
@@ -90,7 +92,7 @@ export class MainComponent implements OnInit {
           alert('NEWS API IS BROKEN');
         }
 
-        this.apiService.getLocalArticles().subscribe(resp =>{
+        this.nodeService.getLocalArticles().subscribe(resp => {
           this.articles.push(...resp);
         })
       });
@@ -113,8 +115,14 @@ export class MainComponent implements OnInit {
 
   receiveCreatedByMeFilter($event) {
     this.createdByMe = $event;
-
-    this.createdByMeFilter(this.createdByMe);
+    if (this.articles) {
+      this.createdByMeFilter(this.createdByMe);
+    }
+    else {
+      this.nodeService.getLocalArticles().subscribe(resp => {
+        this.articles = resp;
+      })
+    }
   }
 
   globalFilter() {

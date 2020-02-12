@@ -13,7 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailsComponent } from './details/details.component'
 import { NewsCardComponent } from './main/news-card/news-card.component'
 import { FilterComponent } from './main/filter/filter.component';
-import { EditPanelComponent } from './edit-panel/edit-panel.component'
+import { EditPanelComponent } from './edit-panel/edit-panel.component';
+import { CreatePanelComponent } from './create-panel/create-panel.component';
+import { NewsFormComponent } from './news-form/news-form.component'
+import { TitleComponent } from './shared/title/title.component';
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { EditPanelComponent } from './edit-panel/edit-panel.component'
     DetailsComponent,
     NewsCardComponent,
     FilterComponent,
-    EditPanelComponent
+    EditPanelComponent,
+    CreatePanelComponent,
+    NewsFormComponent,
+    TitleComponent
   ],
   imports: [
     BrowserModule,

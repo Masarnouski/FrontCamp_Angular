@@ -1,0 +1,49 @@
+@border-color: #60a3bc;
+@text-color: black;
+@border-style: solid;
+
+::ng-deep .mat-select-value,
+::ng-deep .mat-select-placeholder,
+::ng-deep .mat-input-element,
+::ng-deep .mat-form-field-label {
+  color: @text-color !important;
+}
+
+.container ul li{
+	display: block;
+	margin-bottom: 10px;
+	min-height: 35px;
+}
+.container ul li .field-split{
+	width: 49%;
+}
+.container ul li input.align-left{
+	float:left;
+}
+.container ul li input.align-right{
+	float:right;
+}
+.container ul{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+.container{
+	max-width: 450px;
+	background: #FAFAFA;
+	padding: 30px;
+	margin: 50px auto;
+	box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+	border-radius: 10px;
+	border: 6px solid #305A72;
+}
+.button-group{
+	float:right;
+	display:flex;
+	width: 50%;
+}
+.button-group * {
+	flex:1
+}
+
+   

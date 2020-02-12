@@ -12,21 +12,8 @@ export class NewsCardComponent implements OnInit {
 
   @Input() article: Article;
 
-  constructor(private router:Router,
-    private sessionService:SessionService) { }
+  constructor() { }
 
   ngOnInit() {
   }
-
-  navigateToEditPage(){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-          "Article": JSON.stringify(this.article)
-      }
-    };
-   
-
-    this.router.navigate(["/edit"],  navigationExtras);
-  }
-
 }
