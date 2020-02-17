@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditPanelComponent } from './edit-panel.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EditPanelComponent', () => {
   let component: EditPanelComponent;
@@ -8,7 +11,9 @@ describe('EditPanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditPanelComponent ]
+      declarations: [ EditPanelComponent ],
+      imports: [HttpClientModule, RouterTestingModule],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

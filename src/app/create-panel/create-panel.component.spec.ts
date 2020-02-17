@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreatePanelComponent } from './create-panel.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('CreatePanelComponent', () => {
   let component: CreatePanelComponent;
@@ -8,7 +10,9 @@ describe('CreatePanelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreatePanelComponent ]
+      declarations: [ CreatePanelComponent ],
+      imports: [HttpClientModule],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));

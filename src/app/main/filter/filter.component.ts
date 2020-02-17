@@ -14,7 +14,7 @@ export class FilterComponent implements OnInit {
   @Output() clickCreatedByMeCheckbox = new EventEmitter<boolean>();
 
   filterInput: string;
-
+  createdByMe: boolean;
   constructor() { }
 
   ngOnInit() {

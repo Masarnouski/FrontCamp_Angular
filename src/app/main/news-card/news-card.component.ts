@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Article } from 'src/app/models/article';
-import { Router, NavigationExtras } from '@angular/router';
-import { SessionService } from 'src/app/services/sessionService';
 
 @Component({
   selector: 'app-news-card',
