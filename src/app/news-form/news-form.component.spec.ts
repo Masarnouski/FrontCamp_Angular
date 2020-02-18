@@ -40,4 +40,23 @@ describe('NewsFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+    it('should send new article', () => {
+    component.articleFormGroup.patchValue({
+      title: 'TestT',
+      description: 'TestD',
+      content: 'TestC',
+      image: 'TestI',
+      data: 'TestDa',
+      author: 'TestA',
+      url: 'TestU',
+      imageType: 'TestIT'
+    });
+
+    spyOn(component.clickSaveButton, 'emit');
+
+    component.onSubmit();
+
+    expect(component.clickSaveButton.emit).toHaveBeenCalled();
+  });
 });

@@ -10,7 +10,9 @@ export class NewsCardComponent implements OnInit {
 
   @Input() article: Article;
 
-  constructor() { }
+  constructor() {
+    this.article = this.article || new Article();
+   }
 
   ngOnInit() {
   }

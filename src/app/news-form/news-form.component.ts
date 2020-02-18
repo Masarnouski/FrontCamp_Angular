@@ -17,7 +17,9 @@ export class NewsFormComponent implements OnInit {
   public articleFormGroup:FormGroup;
   
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.oldArticle = this.oldArticle ? this.oldArticle : new Article();
+   }
 
   
   ngOnInit(){
